@@ -22,6 +22,23 @@ app.post("/api/users", async (req: Request, res: Response) => {
         status: "OK",
         body: req.body
     })
+});
+
+app.get("/api/user/search", (req: Request, res: Response) => {
+    const { firstName, lastName } = req.query;
+
+    return res.json({
+        firstName,
+        lastName
+    })
+})
+
+app.get("/api/user/:id", (req: Request, res: Response) => {
+    const { id } = req.params;
+
+    return res.json({
+        msg: `this is user no. ${id}`
+    })
 })
 
 app.listen(port, () => {

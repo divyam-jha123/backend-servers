@@ -15,6 +15,27 @@ const server = Bun.serve({
                     body: body
                 })
             }
+        },
+
+        // /api/users/search?firstName=divyam&lastName=jha
+        "/api/users/search": req => {
+            const { searchParams } = new URL(req.url);
+
+            const firstName = searchParams.get("firstName");
+            const lastName = searchParams.get("lastName");
+
+            return Response.json({
+                firstName,
+                lastName
+            })
+        },
+        
+
+        "/api/users/:id": req => {
+            const { id } = req.params;
+            return Response.json({
+                msg : `this is ${id}`
+            })
         }
     },
 
